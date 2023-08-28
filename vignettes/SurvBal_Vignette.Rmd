@@ -1,0 +1,134 @@
+---
+title: "SurvBal_Vignette"
+output: rmdformats::readthedown
+vignette: >
+  %\VignetteIndexEntry{SurvBal_Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE, 
+  message = FALSE,
+  comment = "#>"
+)
+```
+
+
+## Overview
+
+SurvBal enables selection of balances in relation to censored survival and time-to-event outcomes which are of considerable interest, particularly in many biomedical studies. The most common Cox proportional hazards and standard parametric survival (including accelerated failure time) models are included in the package, which are used in combination with step-wise selection procedures to identify the optimal associated ratio of the geometric means of two groups of taxa’s relative abundances.
+
+## Installation 
+
+You can install `SurvBal` from GitHub with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("yinglia/SurvBal")
+```
+
+## Getting Started
+
+```{r, results=FALSE}
+#loading the library
+library(SurvBal)
+```
+
+You can load the sample data attached in `SurvBal` via following code:
+
+```{r}
+#load example data
+data("bacteria")
+data("gvhd")
+```
+
+`bacteria` is a raw taxon count table with 63 samples and 139 taxa. `gvhd` is a survival object containing time and censoring/event information for each sample.
+
+
+## Examples
+
+### Select balance based on the Cox Proportional-Hazards model
+
+We can select the balance of microbiome based on the Cox Proportional Hazards Model by setting `model = "coxph"`. 
+
+
+Here, we specify `mult_repl = TRUE` to use Bayesian Multiplicative Replacement to impute the inflated zeros. If you would like to preprocess the data by adding a small pseudo count (0.5) to all raw counts instead, set `mult_repl = FALSE`.
+
+We specify `selection_criterion = "min_decrement_pvalue"` so that the balance that has the smallest p-value will be selected. If “min_decrement_pvalue” is used, the decrement of p-value along the forward selection procedure will be calculated, and the balance before the first decrement that is smaller than selection_threshold will be selected. The default is “min_pvalue”.
+
+
+```{r, results='hide'}
+select_coxph = balance_selection(
+  Surv_obj = gvhd,
+  data = bacteria,
+  mult_repl = TRUE,
+  model = "coxph",
+  selection_criterion = "min_decrement_pvalue"
+)
+```
+
+We can find the selection path in `selection_path`:
+
+```{r}
+select_coxph$selection_path
+```
+
+We can print the Cox PH model for the selected balance and gvhd:
+
+```{r}
+select_coxph$survival_model
+summary(select_coxph$survival_model)
+```
+
+We can check which taxa are included in the numerator of the selected balance, as well as taxa in the denominator of the selected balance:
+
+```{r}
+select_coxph$balance_name$numerator
+select_coxph$balance_name$denominator
+```
+
+And here is the value of the final selected balance of microbiome for each sample:
+
+```{r}
+select_coxph$balance
+```
+
+Finally we can visualize the survival plot with respect to several quantiles of the final selected balance of the microbiome with `1-alpha` confidence interval. The quantiles of the final selected balance for plot are specified with argument `quantile_plotted`, of which the default value is `c(0.25, 0.5, 0.75)`. The default value of alpha is `0.05`.
+
+```{r}
+select_coxph$survival_plot
+```
+
+From the plot, we can see that the 25th percentile (lower quartile) of the sample microbiome balance is -0.0646; the 50th percentile (median) of balances is 0.1517; the 75th percentile (upper quartile) of balances is 0.4448. The survival curves for the three corresponding values of the microbiome balance are shown in the plot. 
+
+### Select balance based on the parametric model
+
+We can also select the balance based on the parametric model by setting `model = "parametric"`, and specify the distribution for use via argument `dist`. 
+
+
+```{r, results='hide'}
+select_coxph = balance_selection(
+  Surv_obj = gvhd,
+  data = bacteria,
+  mult_repl = FALSE,
+  model = "parametric",
+  dist="weibull",
+  selection_criterion = "min_decrement_pvalue"
+)
+```
+
+Similarly, you can print the selection path, survival model, name of balance, value of balance and survival plot.
+
+```{r}
+select_coxph$selection_path
+select_coxph$survival_model
+select_coxph$balance_name
+select_coxph$balance
+select_coxph$survival_plot
+```
+
+In this vignette, we just presented two examples that focus on tuning the most critical arguments in our view. For information on how to tune other parameters, please refer to our manual.
+

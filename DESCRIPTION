@@ -1,0 +1,36 @@
+Type: Package
+Package: SurvBal
+Title: Selection of Compositional Microbiome Balances for Survival
+    Outcomes
+Version: 0.1.0
+Description: SurvBal enables selection of balances in relation to censored
+    survival and time-to-event outcomes which are of considerable
+    interest, particularly in many biomedical studies. The most common Cox
+    proportional hazards and standard parametric survival (including
+    accelerated failure time) models are included in the package, which
+    are used in combination with step-wise selection procedures to
+    identify the optimal associated ratio of the geometric means of two
+    groups of taxa’s relative abundances.
+Author: Ying Li [aut],
+        Wodan Ling [aut, cre, cph]
+Maintainer: Ying Li <yil4013@med.cornell.edu>
+URL: https://github.com/yinglia/SurvBal
+BugReports: https://github.com/yinglia/SurvBal/issues
+Depends: 
+    R (>= 3.5.0)
+Imports:
+    boot,
+    ggplot2,
+    nonnestcox,
+    survival,
+    survminer,
+    zCompositions
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: 
+    knitr
+License: NA
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
