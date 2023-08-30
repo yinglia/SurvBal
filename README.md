@@ -24,5 +24,3 @@ https://yinglia.github.io/SurvBal-Vignette/
 A Shiny app of `SurvBal`: 
 
 https://yinglistats.shinyapps.io/shinyapp-survbal/
-![image](https://github.com/yinglia/SurvBal/assets/90790297/434b7517-04e1-42f9-96ee-d492a8b33a90)
-
