@@ -36,7 +36,7 @@ The default value is \code{NULL}}
 in the selection procedure. The default value is \code{0.1}}
 
 \item{mult_repl}{A logical variable indicating which algorithm is used to
-process the raw taxon count table. If \code{TRUE} then the Bayesian Multiplicative
+process the raw taxon count table. If \code{TRUE} then the geometric Bayesian Multiplicative
 Replacement (\code{\link[zCompositions:cmultRepl]{zCompositions::cmultRepl}})
 is used to impute the inflated zeros. Otherwise, a small pseudo count (\code{0.5})
 will be added to all raw counts. Finally, either processed data will be converted
@@ -54,7 +54,7 @@ The default value is ``\code{coxph}''}
 and ``\code{loglogistic}''. For more details, please see
 \code{\link[survival:survreg]{survival::survreg}}. The default value is ``\code{weibull}''}
 
-\item{stopping_pvalue}{The threshold of p-value to stop the forward search
+\item{stopping_pvalue}{The threshold of p-value to stop the forward search.
 The forward search where, at each step, a new taxon is added to the existing
 balance, will be stopped if the resulting p-value is larger than \code{stopping_pvalue}.
 The default value is \code{0.15}}
