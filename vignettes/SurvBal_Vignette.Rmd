@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-SurvBal enables selection of balances in relation to censored survival and time-to-event outcomes which are of considerable interest, particularly in many biomedical studies. The most common Cox proportional hazards and standard parametric survival (including accelerated failure time) models are included in the package, which are used in combination with step-wise selection procedures to identify the optimal associated ratio of the geometric means of two groups of taxa’s relative abundances.
+SurvBal enables the selection of microbiome balances in relation to censored survival and time-to-event outcomes which are of considerable interest, particularly in many biomedical studies. The most common Cox proportional hazards and standard parametric survival (including accelerated failure time) models are included in the package, which are used in combination with step-wise selection procedures to identify the optimal associated ratio of the geometric means of two groups of taxa’s relative abundances.
 
 ## Installation 
 
@@ -73,7 +73,7 @@ select_coxph = balance_selection(
 We can find the selection path in `selection_path`:
 
 ```{r}
-select_coxph$selection_path
+select_coxph$selection_path[,1:2]
 ```
 
 We can print the Cox PH model for the selected balance and gvhd:
@@ -110,24 +110,46 @@ We can also select the balance based on the parametric model by setting `model =
 
 
 ```{r, results='hide'}
-select_coxph = balance_selection(
+select_weibull = balance_selection(
   Surv_obj = gvhd,
   data = bacteria,
   mult_repl = FALSE,
   model = "parametric",
-  dist="weibull",
+  dist = "weibull",
   selection_criterion = "min_decrement_pvalue"
 )
 ```
 
-Similarly, you can print the selection path, survival model, name of balance, value of balance and survival plot.
+Similarly, we can find the selection path in selection_path:
 
 ```{r}
-select_coxph$selection_path
-select_coxph$survival_model
-select_coxph$balance_name
-select_coxph$balance
-select_coxph$survival_plot
+select_weibull$selection_path[,1:2]
+```
+
+We can print the model for the selected balance and gvhd:
+
+```{r}
+select_weibull$survival_model
+```
+
+We can check which taxa are included in the numerator of the selected balance, as well as taxa in the denominator of the selected balance:
+
+
+
+```{r}
+select_weibull$balance_name
+```
+
+And here is the value of the final selected balance of microbiome for each sample:
+
+```{r}
+select_weibull$balance
+```
+
+Finally we can visualize the survival plot:
+
+```{r}
+select_weibull$survival_plot
 ```
 
 In this vignette, we just presented two examples that focus on tuning the most critical arguments in our view. For information on how to tune other parameters, please refer to our manual.
