@@ -1,7 +1,7 @@
 # SurvBal
 
 ## Overview
-SurvBal enables selection of balances in relation to censored
+SurvBal enables the selection of microbiome balances in relation to censored
     survival and time-to-event outcomes which are of considerable
     interest, particularly in many biomedical studies. The most common Cox
     proportional hazards and standard parametric survival (including
