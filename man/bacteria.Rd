@@ -11,6 +11,6 @@ An object of class \code{data.frame} with 63 rows and 139 columns.
 bacteria
 }
 \description{
-The data is a raw taxon count table consisting of 63 samples and 139 taxa.
+The data is a raw taxon count table consisting of 63 samples and 139 taxa
 }
 \keyword{datasets}

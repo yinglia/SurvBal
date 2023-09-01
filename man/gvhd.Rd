@@ -11,6 +11,6 @@ An object of class \code{Surv} with 63 rows and 2 columns.
 gvhd
 }
 \description{
-The data is a survival object containing survival time and censoring/event information for 63 samples.
+The data is a survival object containing survival time and censoring/event information for 63 samples
 }
 \keyword{datasets}

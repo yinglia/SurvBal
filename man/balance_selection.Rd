@@ -98,7 +98,7 @@ If \code{sign} is \code{0}, the corresponding taxon is in the denominator of the
 \item{survival_plot}{A plot of survival curves with confidence intervals, stratified by chosen quantiles of the final selected balance of microbiome}
 }
 \description{
-\code{balances_selection()} identifies the log-ratio of geometric means of two sets of taxa {check original ref} that is most associated with the survival outcome using a greedy forward stepwise selection approach
+\code{balances_selection()} identifies the log-ratio of geometric means of two sets of taxa that is most associated with the survival outcome using a greedy forward stepwise selection approach
 }
 \examples{
 
