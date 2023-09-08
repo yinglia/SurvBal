@@ -109,9 +109,9 @@ balance_selection(Surv_obj = gvhd, data = bacteria, mult_repl = FALSE,
 model = "parametric", dist = "weibull", selection_criterion = "min_decrement_pvalue")
 }
 \references{
-Rivera-Pinto, J., Egozcue, J. J., Pawlowsky-Glahn, V., Paredes, R., Noguera-Julian, M., & Calle, M. L. \emph{"Balances: a new perspective for microbiome analysis"}. MSystems 3.4 (2018): 10-1128.
+Rivera-Pinto, J., Egozcue, J. J., Pawlowsky-Glahn, V., Paredes, R., Noguera-Julian, M., & Calle, M. L. \emph{"Balances: a new perspective for microbiome analysis"}. MSystems 3.4 (2018): 10-1128
 
-Fine, J. P. \emph{"Comparing nonnested Cox models"}. Biometrika 89.3 (2002): 635-648.
+Fine, J. P. \emph{"Comparing nonnested Cox models"}. Biometrika 89.3 (2002): 635-648
 
-Wahrendorf, J., Becher, H., & Brown, C. C. \emph{"Bootstrap comparison of non‐nested generalized linear models: applications in survival analysis and epidemiology"}. Journal of the Royal Statistical Society: Series C (Applied Statistics) 36.1 (1987): 72-81.
+Wahrendorf, J., Becher, H., & Brown, C. C. \emph{"Bootstrap comparison of non‐nested generalized linear models: applications in survival analysis and epidemiology"}. Journal of the Royal Statistical Society: Series C (Applied Statistics) 36.1 (1987): 72-81
 }
