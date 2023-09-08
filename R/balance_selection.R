@@ -73,9 +73,9 @@
 #' @import nonnestcox
 #' @import boot
 #'
-#' @references Rivera-Pinto, J., Egozcue, J. J., Pawlowsky-Glahn, V., Paredes, R., Noguera-Julian, M., & Calle, M. L. \emph{"Balances: a new perspective for microbiome analysis"}. MSystems 3.4 (2018): 10-1128.
-#' @references Fine, J. P. \emph{"Comparing nonnested Cox models"}. Biometrika 89.3 (2002): 635-648.
-#' @references Wahrendorf, J., Becher, H., & Brown, C. C. \emph{"Bootstrap comparison of non‐nested generalized linear models: applications in survival analysis and epidemiology"}. Journal of the Royal Statistical Society: Series C (Applied Statistics) 36.1 (1987): 72-81.
+#' @references Rivera-Pinto, J., Egozcue, J. J., Pawlowsky-Glahn, V., Paredes, R., Noguera-Julian, M., & Calle, M. L. \emph{"Balances: a new perspective for microbiome analysis"}. MSystems 3.4 (2018): 10-1128
+#' @references Fine, J. P. \emph{"Comparing nonnested Cox models"}. Biometrika 89.3 (2002): 635-648
+#' @references Wahrendorf, J., Becher, H., & Brown, C. C. \emph{"Bootstrap comparison of non‐nested generalized linear models: applications in survival analysis and epidemiology"}. Journal of the Royal Statistical Society: Series C (Applied Statistics) 36.1 (1987): 72-81
 
 #' @examples
 #'
@@ -125,10 +125,10 @@ balance_selection <- function(Surv_obj, data, covariates=NULL,
   mod = select_model(selected=selected, criterion=selection_criterion, threshold=selection_threshold)
   rownames(mod) = colnames(processed_data)[mod[, 'taxon_id']]
 
-  selected_positive_final = mod[which(mod[, 2] == 1), 1]
+  selected_positive_final = rownames(mod)[which(mod[, 2] == 1)] 
   positive_comp = apply( processed_data[, selected_positive_final, drop=F], 1, mean)
 
-  selected_negative_final = mod[which(mod[, 2] == 0), 1]
+  selected_negative_final = rownames(mod)[which(mod[, 2] == 0)]
   negative_comp = apply( processed_data[, selected_negative_final, drop=F], 1, mean)
 
   balance_name = list()
