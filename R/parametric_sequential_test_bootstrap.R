@@ -7,6 +7,8 @@
 #' @param dist_boot the parametric distribution
 #' @param indices placeholder, allowing boot to select sample
 #'
+#' @import stats
+#' 
 #' @noRd
 
 AICdiff_function <- function(data, dist_boot, indices) {
@@ -27,6 +29,8 @@ AICdiff_function <- function(data, dist_boot, indices) {
 #' @param dist_boot the parametric distribution
 #' @param indices placeholder, allowing boot to select sample
 #'
+#' @import stats
+#' 
 #' @noRd
 
 AICdiff_function_adjusted <- function(data, dist_boot, indices) {

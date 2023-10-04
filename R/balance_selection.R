@@ -72,6 +72,7 @@
 #' @import ggplot2
 #' @import nonnestcox
 #' @import boot
+#' @import stats
 #'
 #' @references Rivera-Pinto, J., Egozcue, J. J., Pawlowsky-Glahn, V., Paredes, R., Noguera-Julian, M., & Calle, M. L. \emph{"Balances: a new perspective for microbiome analysis"}. MSystems 3.4 (2018): 10-1128
 #' @references Fine, J. P. \emph{"Comparing nonnested Cox models"}. Biometrika 89.3 (2002): 635-648

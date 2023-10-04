@@ -11,6 +11,8 @@
 #' @param model the model that the user wants to use 
 #' @param dist if \code{model} is ``\code{parametric}'', than dist is the distribution the user wants to use, ``\code{weibull}'' is default
 #'
+#' @import utils
+#' 
 #' @noRd
 
 taxon_finding_first <- function(Surv_obj, data, covariates, candidates, tracker, model, dist) {
