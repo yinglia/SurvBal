@@ -15,7 +15,7 @@ SurvBal enables the selection of microbiome balances in relation to censored
 You can install SurvBal from GitHub by:
 
 ```
-#install.packages("devtools")
+# install.packages("devtools")
 devtools::install_github("yinglia/SurvBal")
 ```
 
