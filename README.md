@@ -10,6 +10,15 @@ SurvBal enables the selection of microbiome balances in relation to censored
     identify the optimal associated ratio of the geometric means of two
     groups of taxa’s relative abundances.
 
+## Installation guide
+
+You can install SurvBal from GitHub by:
+
+```
+#install.packages("devtools")
+devtools::install_github("yinglia/SurvBal")
+```
+
 ## Resources
 
 
@@ -17,7 +26,7 @@ All functions in `SurvBal` are described in the manual:
 
 https://github.com/yinglia/SurvBal/blob/main/SurvBal_0.1.0.pdf
 
-The vignette of `SurvBal` can be found at: 
+The vignette of `SurvBal` includes the instructions to run the method on the example dataset, with the input and output clearly described, which can be found at: 
 
 https://yinglia.github.io/SurvBal-Vignette/
 
