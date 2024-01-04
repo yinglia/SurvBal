@@ -10,7 +10,7 @@ SurvBal enables the selection of microbiome balances in relation to censored
     identify the optimal associated ratio of the geometric means of two
     groups of taxa’s relative abundances.
 
-## Installation guide
+## Installation Guide
 
 You can install SurvBal from GitHub by:
 
