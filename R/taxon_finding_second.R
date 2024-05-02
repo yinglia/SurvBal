@@ -94,14 +94,14 @@ taxon_finding_second <- function(Surv_obj, data, covariates, candidates, tracker
 
   result_positive = c(candidates[ind_positive_selected], # taxon_id
                       1,
-                      p_value = min(record_positive[, 2])) # p_value
+                      p_value = record_positive[ind_positive_selected, 2]) # p_value
 
   # same as above but for negative
   ind_negative_selected = which.min(record_negative[, 2])
 
   result_negative = c(candidates[ind_negative_selected],
                       0,
-                      p_value = min(record_negative[, 2]))
+                      p_value = record_negative[ind_negative_selected, 2])
 
   # selects the result with the smaller p value
   if (result_negative[3] < result_positive[3]) {
