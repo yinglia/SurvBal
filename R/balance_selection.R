@@ -37,7 +37,7 @@
 #' if the new balance is not significantly different from the current one
 #' in the survival regression model. The default value is \code{FALSE}
 #' @param sequential_alpha The level of significance for the sequential testing
-#' if \code{sequential_test} is \code{TRUE}. The default value is \code{0.05}
+#' if \code{sequential_test} is \code{TRUE}. The default value is \code{0.25}
 #' @param selection_criterion The criterion to select balance in the final model.
 #' The options include ``\code{min_pvalue}'' and ``\code{min_decrement_pvalue}''. If ``\code{min_pvalue}'' is used,
 #' the balance that has the smallest p-value along the forward selection path will be selected.
@@ -89,7 +89,7 @@
 balance_selection <- function(Surv_obj, data, covariates=NULL,
                               min_prevalence=0.1, mult_repl=TRUE,
                               model="coxph", dist="weibull",
-                              stopping_pvalue=0.15, sequential_test=FALSE, sequential_alpha=0.05,
+                              stopping_pvalue=0.15, sequential_test=FALSE, sequential_alpha=0.25,
                               selection_criterion="min_decrement_pvalue", selection_threshold=0.15,
                               quantile_plotted=c(0.25, 0.5, 0.75), alpha = 0.05) {
 
