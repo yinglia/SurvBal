@@ -14,7 +14,7 @@ balance_selection(
   dist = "weibull",
   stopping_pvalue = 0.15,
   sequential_test = FALSE,
-  sequential_alpha = 0.05,
+  sequential_alpha = 0.25,
   selection_criterion = "min_decrement_pvalue",
   selection_threshold = 0.15,
   quantile_plotted = c(0.25, 0.5, 0.75),
@@ -66,7 +66,7 @@ if the new balance is not significantly different from the current one
 in the survival regression model. The default value is \code{FALSE}}
 
 \item{sequential_alpha}{The level of significance for the sequential testing
-if \code{sequential_test} is \code{TRUE}. The default value is \code{0.05}}
+if \code{sequential_test} is \code{TRUE}. The default value is \code{0.25}}
 
 \item{selection_criterion}{The criterion to select balance in the final model.
 The options include ``\code{min_pvalue}'' and ``\code{min_decrement_pvalue}''. If ``\code{min_pvalue}'' is used,
