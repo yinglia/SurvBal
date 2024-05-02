@@ -22,9 +22,9 @@ Imports:
     boot,
     ggplot2,
     nonnestcox,
-    survival,
+    survival (>= 3.5.7),
     survminer,
-    zCompositions
+    zCompositions (<= 1.4.0.1)
 Suggests: 
     knitr,
     rmarkdown
