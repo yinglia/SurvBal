@@ -97,6 +97,14 @@ balance_selection <- function(Surv_obj, data, covariates=NULL,
   # add some sanity check before processing
 
   if (length(Surv_obj) != nrow(data)) stop("The length of Surv_obj should be the same as the number of rows of data, which is the sample size.")
+  
+  if (model == "parametric"){
+  if (any(Surv_obj[,"time"] == 0, na.rm = TRUE)) {
+    stop('Error: The survival time contains zero. To use "parametirc" model, please exclude samples with zero survival time. Otherwise, please use "coxph" model.')
+  }
+  }
+  
+    
   processed_data = pre_processing(data=data, min_prevalence=min_prevalence, mult_repl=mult_repl)
 
   ### initialize everything, used for step1 to step3
