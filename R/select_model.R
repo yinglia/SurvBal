@@ -10,8 +10,8 @@
 
 select_model <- function(selected, criterion, threshold) {
 
-  if (any(!is.na(selected[, 4])) & any(selected[, 4] == 0)) selected = selected[1:(which(selected[, 4] == 0)-1), ]
-
+  if (any(!is.na(selected[, 4])) & any(selected[, 4] == 0, na.rm=TRUE)) selected = selected[1:(which(selected[, 4] == 0)-1), ]
+  
   if (criterion == "min_pvalue"){
     ind_selected_to = which.min(selected[, 3])
   } else if (criterion == "min_decrement_pvalue"){
