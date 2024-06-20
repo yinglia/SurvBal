@@ -2,7 +2,7 @@ Type: Package
 Package: SurvBal
 Title: Selection of Compositional Microbiome Balances for Survival
     Outcomes
-Version: 0.1.0
+Version: 1.1.0
 Description: Enables the selection of microbiome balances in relation to censored
     survival and time-to-event outcomes which are of considerable
     interest, particularly in many biomedical studies. The most common Cox
