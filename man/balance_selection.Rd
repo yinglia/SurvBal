@@ -45,8 +45,9 @@ The default value is \code{TRUE}}
 
 \item{model}{Specifies which kind of survival regression model is built.
 The options are ``\code{coxph}'' (\code{\link[survival:coxph]{survival::coxph}}) and
-``\code{parametric}'' (\code{\link[survival:survreg]{survival::survreg}}).
-The default value is ``\code{coxph}''}
+``\code{parametric}'' (\code{\link[survival:survreg]{survival::survreg}}). 
+Make sure there is no zero survival time if choose ``\code{parametric}''.
+The default value is ``\code{coxph}''.}
 
 \item{dist}{Specifies which kind of parametric distribution is used if
 \code{model} is ``\code{parametric}''. The options include ``\code{weibull}'',
