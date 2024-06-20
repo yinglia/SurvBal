@@ -20,8 +20,9 @@
 #' The default value is \code{TRUE}
 #' @param model Specifies which kind of survival regression model is built.
 #' The options are ``\code{coxph}'' (\code{\link[survival:coxph]{survival::coxph}}) and
-#' ``\code{parametric}'' (\code{\link[survival:survreg]{survival::survreg}}).
-#' The default value is ``\code{coxph}''
+#' ``\code{parametric}'' (\code{\link[survival:survreg]{survival::survreg}}). 
+#' Make sure there is no zero survival time if choose ``\code{parametric}''.
+#' The default value is ``\code{coxph}''. 
 #' @param dist Specifies which kind of parametric distribution is used if
 #' \code{model} is ``\code{parametric}''. The options include ``\code{weibull}'',
 #' ``\code{exponential}'', ``\code{gaussian}'', ``\code{logistic}'', ``\code{lognormal}''
@@ -98,13 +99,13 @@ balance_selection <- function(Surv_obj, data, covariates=NULL,
 
   if (length(Surv_obj) != nrow(data)) stop("The length of Surv_obj should be the same as the number of rows of data, which is the sample size.")
   
-  if (model == "parametric"){
-  if (any(Surv_obj[,"time"] == 0, na.rm = TRUE)) {
-    stop('Error: The survival time contains zero. To use "parametirc" model, please exclude samples with zero survival time. Otherwise, please use "coxph" model.')
+  if (model == "parametric" &
+      any(Surv_obj[, "time"] == 0, na.rm = TRUE)) {
+    stop(
+      'Error: The survival time contains zero. To use "parametirc" model, please exclude samples with zero survival time. Otherwise, please use "coxph" model.'
+    )
   }
-  }
-  
-    
+
   processed_data = pre_processing(data=data, min_prevalence=min_prevalence, mult_repl=mult_repl)
 
   ### initialize everything, used for step1 to step3
