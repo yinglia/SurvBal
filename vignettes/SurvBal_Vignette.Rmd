@@ -96,13 +96,13 @@ And here is the value of the final selected balance of microbiome for each sampl
 select_coxph$balance
 ```
 
-Finally we can visualize the survival plot with respect to several quantiles of the final selected balance of the microbiome with `1-alpha` confidence interval. The quantiles of the final selected balance for plot are specified with argument `quantile_plotted`, of which the default value is `c(0.25, 0.5, 0.75)`. The default value of alpha is `0.05`.
+Finally we can visualize the survival plot with respect to several quantiles of the final selected balance of the microbiome with `1-alpha` confidence interval. The quantiles of the final selected balance for plot are specified with argument `quantile_plotted`, of which the default value is `c(0.25, 0.75)`. The default value of alpha is `0.05`.
 
 ```{r}
 select_coxph$survival_plot
 ```
 
-From the plot, we can see that the 25th percentile (lower quartile) of the sample microbiome balance is -0.6735; the 50th percentile (median) of balances is -0.2043; the 75th percentile (upper quartile) of balances is 0.5512. The survival curves for the three corresponding values of the microbiome balance are shown in the plot.
+From the plot, we can see that the 25th percentile (lower quartile) of the sample microbiome balance is -0.6735, and the 75th percentile (upper quartile) of balances is 0.5512. The survival curves for the three corresponding values of the microbiome balance are shown in the plot.
 
 ### Select balance based on the parametric model
 
