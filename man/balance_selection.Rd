@@ -17,7 +17,7 @@ balance_selection(
   sequential_alpha = 0.25,
   selection_criterion = "min_decrement_pvalue",
   selection_threshold = 0.15,
-  quantile_plotted = c(0.25, 0.5, 0.75),
+  quantile_plotted = c(0.25, 0.75),
   alpha = 0.05
 )
 }
@@ -81,7 +81,7 @@ is ``\code{min_decrement_pvalue}''. The default value is \code{0.15}}
 
 \item{quantile_plotted}{A vector specifies the quantiles of the final selected
 balance that will be shown in the
-survival plot. The default value is \code{c(0.25, 0.5, 0.75)}}
+survival plot. The default value is \code{c(0.25, 0.75)}}
 
 \item{alpha}{The level of significance for survival plot of the final selected
 balance. The corresponding confidence intervals will be shown in the survival
