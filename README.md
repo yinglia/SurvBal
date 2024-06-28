@@ -24,7 +24,7 @@ devtools::install_github("yinglia/SurvBal")
 
 All functions in `SurvBal` are described in the manual: 
 
-https://github.com/yinglia/SurvBal/blob/main/SurvBal_0.1.0.pdf
+https://github.com/yinglia/SurvBal/blob/main/SurvBal_1.1.0.pdf
 
 The vignette of `SurvBal` includes the instructions to run the method on the example dataset, with the input and output clearly described, which can be found at: 
 
