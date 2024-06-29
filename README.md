@@ -5,7 +5,7 @@
 
 ## Installation Guide
 
-Please make sure you install the following package before installing `SurvBal`: 
+Please make sure you install the R package `zCompositions` with version number <= 1.4.0.1 before installing `SurvBal`: 
 
 ```
 require(remotes) 
