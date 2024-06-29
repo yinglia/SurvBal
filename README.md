@@ -1,23 +1,26 @@
 # SurvBal
 
 ## Overview
-SurvBal enables the selection of microbiome balances in relation to censored
-    survival and time-to-event outcomes which are of considerable
-    interest, particularly in many biomedical studies. The most common Cox
-    proportional hazards and standard parametric survival (including
-    accelerated failure time) models are included in the package, which
-    are used in combination with step-wise selection procedures to
-    identify the optimal associated ratio of the geometric means of two
-    groups of taxa’s relative abundances.
+`SurvBal` enables the selection of microbiome balances in relation to censored survival or time-to-event outcomes, which are of considerable interest in many biomedical studies. The most commonly used survival models – the Cox proportional hazards and parametric survival (including accelerated failure time) models are included in the package, which are used in combination with step-wise selection procedures to identify the optimal associated balance of microbiome, i.e., the ratio of the geometric means of two groups of taxa’s relative abundances.
 
 ## Installation Guide
 
-You can install SurvBal from GitHub by:
+Please make sure you install the following package before installing `SurvBal`: 
+
+```
+require(remotes) 
+install_version("zCompositions", version = "1.4.0.1", repos = "http://cran.us.r-project.org")
+```
+
+You can install `SurvBal` from GitHub by:
 
 ```
 # install.packages("devtools")
 devtools::install_github("yinglia/SurvBal")
 ```
+
+Please skip the recommended update about `zCompositions`.
+
 
 ## Resources
 
