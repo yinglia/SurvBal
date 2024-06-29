@@ -12,7 +12,7 @@ require(remotes)
 install_version("zCompositions", version = "1.4.0.1", repos = "http://cran.us.r-project.org")
 ```
 
-You can install `SurvBal` from GitHub by:
+Then you can install `SurvBal` from GitHub by:
 
 ```
 # install.packages("devtools")
