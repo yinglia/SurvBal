@@ -17,9 +17,10 @@ knitr::opts_chunk$set(
 ```
 
 
+
 ## Overview
 
-SurvBal enables the selection of microbiome balances in relation to censored survival and time-to-event outcomes which are of considerable interest, particularly in many biomedical studies. The most common Cox proportional hazards and standard parametric survival (including accelerated failure time) models are included in the package, which are used in combination with step-wise selection procedures to identify the optimal associated ratio of the geometric means of two groups of taxa’s relative abundances.
+`SurvBal` enables the selection of microbiome balances in relation to censored survival or time-to-event outcomes, which are of considerable interest in many biomedical studies. The most commonly used survival models – the Cox proportional hazards and parametric survival (including accelerated failure time) models are included in the package, which are used in combination with step-wise selection procedures to identify the optimal associated balance of microbiome, i.e., the ratio of the geometric means of two groups of taxa’s relative abundances.
 
 ## Installation 
 
@@ -37,7 +38,7 @@ devtools::install_github("yinglia/SurvBal")
 library(SurvBal)
 ```
 
-You can load the sample data attached in `SurvBal` via following code:
+You can load the sample data in `SurvBal` using the following code.
 
 ```{r}
 #load example data
@@ -50,12 +51,12 @@ data("gvhd")
 
 ## Examples
 
-### Select balance based on the Cox Proportional-Hazards model
+### Select balance based on the Cox proportional hazards model
 
-We can select the balance of microbiome based on the Cox Proportional Hazards Model by setting `model = "coxph"`. 
+We can select the balance of microbiome based on the Cox proportional hazards Model by setting `model = "coxph"`. 
 
 
-Here, we specify `mult_repl = TRUE` to use Bayesian Multiplicative Replacement to impute the inflated zeros. If you would like to preprocess the data by adding a small pseudo count (0.5) to all raw counts instead, set `mult_repl = FALSE`.
+Here, we specify `mult_repl = TRUE` to use the geometric Bayesian multiplicative replacement method to impute the inflated zeros. If you would like to process the data by adding a small pseudo-count (0.5) to all raw counts instead, set `mult_repl = FALSE`.
 
 We specify `selection_criterion = "min_decrement_pvalue"` so that the decrement of p-value along the forward selection path will be calculated, the balance before the first decrement that is smaller than selection_threshold (the default value is 0.15) will be selected. If “min_pvalue” is used, the balance that has the smallest p-value along the forward selection path will be selected. The default is “min_decrement_pvalue”.
 
@@ -76,7 +77,7 @@ We can find the selection path in `selection_path`:
 select_coxph$selection_path[,1:2]
 ```
 
-We can print the Cox PH model for the selected balance and gvhd:
+We can print the final fitted Cox PH model for the survival outcome, `gvhd` , with the selected balance:
 
 ```{r}
 select_coxph$survival_model
@@ -96,18 +97,19 @@ And here is the value of the final selected balance of microbiome for each sampl
 select_coxph$balance
 ```
 
-Finally we can visualize the survival plot with respect to several quantiles of the final selected balance of the microbiome with `1-alpha` confidence interval. The quantiles of the final selected balance for plot are specified with argument `quantile_plotted`, of which the default value is `c(0.25, 0.75)`. The default value of alpha is `0.05`.
+Finally, we can visualize the survival plot with respect to several quantiles of the final selected balance of microbiome with `1-alpha` confidence interval. The quantiles of the final selected balance for plot are specified through the argument `quantile_plotted`, of which the default value is
+`c(0.25, 0.75)`. The default value of alpha is `0.05`.
 
 ```{r}
 select_coxph$survival_plot
 ```
 
-From the plot, we can see that the 25th percentile (lower quartile) of the sample microbiome balance is -0.6735, and the 75th percentile (upper quartile) of balances is 0.5512. The survival curves for the three corresponding values of the microbiome balance are shown in the plot.
+From the plot, we can see that the 25th percentile (lower quartile) of the sample microbiome balance is -0.6735, and the 75th percentile (upper quartile) is 0.5512. The survival curves for the two corresponding values of the microbiome balance are shown in the plot.
 
-### Select balance based on the parametric model
+### Select balance based on the parametric survival model
 
-We can also select the balance based on the parametric model by setting `model = "parametric"`, and specify the distribution for use via argument `dist`. 
-
+We can also select the balance based on the parametric survival model by setting `model = "parametric"`
+, and specify the distribution via the argument `dist`.
 
 ```{r, results='hide'}
 select_weibull = balance_selection(
@@ -120,13 +122,13 @@ select_weibull = balance_selection(
 )
 ```
 
-Similarly, we can find the selection path in selection_path:
+Similarly, we can find the selection path in `selection_path`:
 
 ```{r}
 select_weibull$selection_path[,1:2]
 ```
 
-We can print the model for the selected balance and gvhd:
+We can print the final fitted parametric survival model for the survival outcome, `gvhd`, with the selected balance:
 
 ```{r}
 select_weibull$survival_model
@@ -146,11 +148,9 @@ And here is the value of the final selected balance of microbiome for each sampl
 select_weibull$balance
 ```
 
-Finally we can visualize the survival plot:
+Finally, we can visualize the survival plot:
 
 ```{r}
 select_weibull$survival_plot
 ```
-
-In this vignette, we just presented two examples that focus on tuning the most critical arguments in our view. For information on how to tune other parameters, please refer to our manual.
 
