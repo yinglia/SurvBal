@@ -36,9 +36,9 @@ The default value is \code{NULL}}
 in the selection procedure. The default value is \code{0.1}}
 
 \item{mult_repl}{A logical variable indicating which algorithm is used to
-process the raw taxon count table. If \code{TRUE} then the geometric Bayesian Multiplicative
-Replacement (\code{\link[zCompositions:cmultRepl]{zCompositions::cmultRepl}})
-is used to impute the inflated zeros. Otherwise, a small pseudo count (\code{0.5})
+process the raw taxon count table. If \code{TRUE} then the geometric Bayesian multiplicative
+replacement (\code{\link[zCompositions:cmultRepl]{zCompositions::cmultRepl}})
+is used to impute the inflated zeros. Otherwise, a small pseudo-count (\code{0.5})
 will be added to all raw counts. Finally, either processed data will be converted
 to relative abundance, then log of relative abundance will be used in the selection procedure.
 The default value is \code{TRUE}}
@@ -47,7 +47,7 @@ The default value is \code{TRUE}}
 The options are ``\code{coxph}'' (\code{\link[survival:coxph]{survival::coxph}}) and
 ``\code{parametric}'' (\code{\link[survival:survreg]{survival::survreg}}). 
 Make sure there is no zero survival time if choose ``\code{parametric}''.
-The default value is ``\code{coxph}''.}
+The default value is ``\code{coxph}''}
 
 \item{dist}{Specifies which kind of parametric distribution is used if
 \code{model} is ``\code{parametric}''. The options include ``\code{weibull}'',
@@ -69,7 +69,7 @@ in the survival regression model. The default value is \code{FALSE}}
 \item{sequential_alpha}{The level of significance for the sequential testing
 if \code{sequential_test} is \code{TRUE}. The default value is \code{0.25}}
 
-\item{selection_criterion}{The criterion to select balance in the final model.
+\item{selection_criterion}{The criterion to select the global balance in the final model.
 The options include ``\code{min_pvalue}'' and ``\code{min_decrement_pvalue}''. If ``\code{min_pvalue}'' is used,
 the balance that has the smallest p-value along the forward selection path will be selected.
 If ``\code{min_decrement_pvalue}'' is used, the decrement of p-value along the forward selection path will be calculated,
@@ -99,7 +99,7 @@ If \code{sign} is \code{0}, the corresponding taxon is in the denominator of the
 \item{survival_plot}{A plot of survival curves with confidence intervals, stratified by chosen quantiles of the final selected balance of microbiome}
 }
 \description{
-\code{balances_selection()} identifies the log-ratio of geometric means of two sets of taxa that is most associated with the survival outcome using a greedy forward stepwise selection approach
+\code{balances_selection()} identifies the optimal balance, i.e., the log-ratio of the geometric means of two sets of taxa that is most associated with the survival outcome using a greedy forward step-wise selection approach
 }
 \examples{
 
