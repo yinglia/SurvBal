@@ -4,13 +4,12 @@ Title: Selection of Compositional Microbiome Balances for Survival
     Outcomes
 Version: 1.1.0
 Description: Enables the selection of microbiome balances in relation to censored
-    survival and time-to-event outcomes which are of considerable
-    interest, particularly in many biomedical studies. The most common Cox
-    proportional hazards and standard parametric survival (including
-    accelerated failure time) models are included in the package, which
-    are used in combination with step-wise selection procedures to
-    identify the optimal associated ratio of the geometric means of two
-    groups of taxa’s relative abundances.
+    survival or time-to-event outcomes, which are of considerable interest in many 
+    biomedical studies. The most commonly used survival models – the Cox proportional 
+    hazards and parametric survival (including accelerated failure time) models are 
+    included in the package, which are used in combination with step-wise selection 
+    procedures to identify the optimal associated balance of microbiome, i.e., the 
+    ratio of the geometric means of two groups of taxa's relative abundances.
 Author: Ying Li [aut],
         Wodan Ling [aut, cre, cph]
 Maintainer: Ying Li <yil4013@med.cornell.edu>
