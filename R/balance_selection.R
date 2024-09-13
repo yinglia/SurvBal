@@ -56,6 +56,7 @@
 #'
 #' @return
 #' \code{balance_selection} return a list containing the following components:
+#' \item{global_p}{Omnibus p-value from the global community-level association test, MiRKAT-S, which examines whether there is an overall shift in the microbiome composition (presence-absence status and abundance, encoded by Bray-Curtis and Jaccard distances) regarding the survival outcome}
 #' \item{selection_path}{A matrix showing the forward selection path. If \code{sign}
 #' is \code{1}, the corresponding taxon is in the numerator of the balance;
 #' If \code{sign} is \code{0}, the corresponding taxon is in the denominator of the balance.
@@ -74,6 +75,8 @@
 #' @import nonnestcox
 #' @import boot
 #' @import stats
+#' @import vegan
+#' @import MiRKAT
 #'
 #' @references Rivera-Pinto, J., Egozcue, J. J., Pawlowsky-Glahn, V., Paredes, R., Noguera-Julian, M., & Calle, M. L. \emph{"Balances: a new perspective for microbiome analysis"}. MSystems 3.4 (2018): 10-1128
 #' @references Fine, J. P. \emph{"Comparing nonnested Cox models"}. Biometrika 89.3 (2002): 635-648
@@ -105,9 +108,12 @@ balance_selection <- function(Surv_obj, data, covariates=NULL,
       'Error: The survival time contains zero. To use "parametirc" model, please exclude samples with zero survival time. Otherwise, please use "coxph" model.'
     )
   }
-
-  processed_data = pre_processing(data=data, min_prevalence=min_prevalence, mult_repl=mult_repl)
-
+  
+  # preprocess data and perform global test
+  pre_process_re = pre_processing(Surv_obj=Surv_obj, data=data, covariates=covariates, min_prevalence=min_prevalence, mult_repl=mult_repl)
+  p_global = pre_process_re$global_test
+  processed_data = pre_process_re$data_prepped
+  
   ### initialize everything, used for step1 to step3
   selected = matrix(ncol=4, nrow=ncol(processed_data))
   colnames(selected) = c("taxon_id", "sign", "p_value", "sequential_sig")
@@ -216,7 +222,15 @@ balance_selection <- function(Surv_obj, data, covariates=NULL,
     stop("The only options of model specification are 'coxph' and 'parametric'.")
   }
 
-  return (list(selection_path=mod, survival_model=result, balance_name=balance_name, balance=balance, survival_plot=survival_plot))
+  # warning based on global test p value
+  if (p_global > 0.05) {
+    message = "No significant community-level association was found between the microbiome and survival outcome (MiRKAT-S omnibus p-value > 0.05). Though it is not obvious whether the community-level test truly informs the validity of the balance – community-level testing is best used when there are concerted differences among a large number of taxa while the analysis of balances is about variable selection wherein the outcome is related to imbalances of a few taxa, it is recommended to interpret the final balance by SurvBal with caution, as the current algorithm may still select a balance when no associations exist. An improved selection algorithm accommodating the null case will be developed."
+    warning(
+      paste(strwrap(message, width = 100), collapse = "\n")
+    )
+  }
+  
+  return (list(global_p = p_global, selection_path=mod, survival_model=result, balance_name=balance_name, balance=balance, survival_plot=survival_plot))
 
 }
 

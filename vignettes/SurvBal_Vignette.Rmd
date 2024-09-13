@@ -24,12 +24,21 @@ knitr::opts_chunk$set(
 
 ## Installation 
 
-You can install `SurvBal` from GitHub with:
+Please make sure you install the R package `zCompositions` with version number <= 1.4.0.1 before installing `SurvBal`:
+
+```{r, eval=FALSE}
+require(remotes) 
+install_version("zCompositions", version = "1.4.0.1", repos = "http://cran.us.r-project.org")
+```
+
+Then you can install `SurvBal` from GitHub by:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("yinglia/SurvBal")
 ```
+
+Please skip the recommended update for `zCompositions`.
 
 ## Getting Started
 
@@ -55,7 +64,6 @@ data("gvhd")
 
 We can select the balance of microbiome based on the Cox proportional hazards Model by setting `model = "coxph"`. 
 
-
 Here, we specify `mult_repl = TRUE` to use the geometric Bayesian multiplicative replacement method to impute the inflated zeros. If you would like to process the data by adding a small pseudo-count (0.5) to all raw counts instead, set `mult_repl = FALSE`.
 
 We specify `selection_criterion = "min_decrement_pvalue"` so that the decrement of p-value along the forward selection path will be calculated, the balance before the first decrement that is smaller than selection_threshold (the default value is 0.15) will be selected. If “min_pvalue” is used, the balance that has the smallest p-value along the forward selection path will be selected. The default is “min_decrement_pvalue”.
@@ -70,6 +78,14 @@ select_coxph = balance_selection(
   selection_criterion = "min_decrement_pvalue"
 )
 ```
+
+We can check the omnibus p-value from the global community-level association test, MiRKAT-S, which examines whether there is an overall shift in the microbiome composition (presence-absence status and abundance, encoded by Bray-Curtis and Jaccard distances) regarding the survival outcome.
+
+```{r}
+select_coxph$global_p
+```
+
+A p-value greater than 0.05 indicates that there is no significant community-level association between the microbiome and survival outcome. Though it is not obvious whether the community-level test truly informs the validity of the balance, it is recommended to interpret the final balance by `SurvBal` with caution, as the current algorithm may still select a balance when no associations exist. An improved selection algorithm for the null case will be developed. 
 
 We can find the selection path in `selection_path`:
 
@@ -122,7 +138,13 @@ select_weibull = balance_selection(
 )
 ```
 
-Similarly, we can find the selection path in `selection_path`:
+Similarly, We can check the omnibus p-value from the global community-level association test, MiRKAT-S, in `global_p`:
+
+```{r}
+select_coxph$global_p
+```
+
+we can find the selection path in `selection_path`:
 
 ```{r}
 select_weibull$selection_path[,1:2]

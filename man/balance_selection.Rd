@@ -89,6 +89,7 @@ plot. The default value is \code{0.05}}
 }
 \value{
 \code{balance_selection} return a list containing the following components:
+\item{global_p}{Omnibus p-value from the global community-level association test, MiRKAT-S, which examines whether there is an overall shift in the microbiome composition (presence-absence status and abundance, encoded by Bray-Curtis and Jaccard distances) regarding the survival outcome}
 \item{selection_path}{A matrix showing the forward selection path. If \code{sign}
 is \code{1}, the corresponding taxon is in the numerator of the balance;
 If \code{sign} is \code{0}, the corresponding taxon is in the denominator of the balance.

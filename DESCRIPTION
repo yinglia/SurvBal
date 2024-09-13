@@ -2,7 +2,7 @@ Type: Package
 Package: SurvBal
 Title: Selection of Compositional Microbiome Balances for Survival
     Outcomes
-Version: 1.1.0
+Version: 1.2.0
 Description: Enables the selection of microbiome balances in relation to censored
     survival or time-to-event outcomes, which are of considerable interest in many 
     biomedical studies. The most commonly used survival models – the Cox proportional 
@@ -23,7 +23,9 @@ Imports:
     nonnestcox,
     survival (>= 3.5.7),
     survminer,
-    zCompositions (<= 1.4.0.1)
+    zCompositions (<= 1.4.0.1),
+    vegan,
+    MiRKAT
 Suggests: 
     knitr,
     rmarkdown
@@ -32,4 +34,4 @@ VignetteBuilder:
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
